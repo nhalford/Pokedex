@@ -10,4 +10,22 @@
 
 @interface NHPokemon : NSObject
 
+@property (strong) NSString *name;
+@property (strong) NSString *type;
+@property (strong) NSNumber *height;
+@property (strong) NSNumber *weight;
+@property (strong) NSNumber *number; // Integer between 1 and 151
+@property (strong) NSString *description;
+@property (strong) UIImage *sprite;
+@property (strong) NSURL *cry; // file path to cry sound file
+
+- (id)initWithName:(NSString *)nm
+              type:(NSString *)tp
+            height:(NSNumber *)ht
+            weight:(NSNumber *)wt
+            number:(NSNumber *)num
+       description:(NSString *)desc
+            sprite:(NSString *)spriteName
+               cry:(NSURL *)cryPath;
+
 @end

@@ -7,6 +7,9 @@
 //
 
 #import "NHAppDelegate.h"
+#import "NHPokemon.h"
+#import "PokedexViewController.h"
+#import "PokemonViewController.h"
 
 @implementation NHAppDelegate
 
@@ -14,6 +17,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    PokedexViewController *pokedexViewController = [[PokedexViewController alloc] init];
+    
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:pokedexViewController];
+    [self.window setRootViewController:navController];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

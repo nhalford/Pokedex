@@ -7,12 +7,33 @@
 //
 
 #import "PokemonViewController.h"
+#import "NHPokemon.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface PokemonViewController ()
 
 @end
 
 @implementation PokemonViewController
+
+- (IBAction)cry:(id)sender
+{
+    [audioPlayer play];
+}
+
+- (id)initWithPokemon:(NHPokemon *)pkmn
+{
+    self = [super initWithNibName:@"PokemonViewController" bundle:nil];
+    if (self) {
+        [self setPokemon:pkmn];
+        [self setCryPath:[pkmn cry]];
+        [[self navigationItem] setTitle:[NSString stringWithFormat:@"%@. %@",[pkmn number], [pkmn name]]];
+        audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[self cryPath] error:NULL];
+        audioPlayer.delegate = self;
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +48,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [cryButton setHidden:NO];
+    
+    [heightLabel setText:@"Placeholder height"];
+    [weightLabel setText:@"Placeholder weight"];
+    [descView setText:[[self pokemon] description]];
+    [imageView setImage:[[self pokemon] sprite]];
 }
 
 - (void)didReceiveMemoryWarning

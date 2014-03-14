@@ -23,6 +23,8 @@
  THE SOFTWARE.
  **/
 
+// Downloaded from https://github.com/davedelong/CHCSVParser/
+
 #import <Foundation/Foundation.h>
 
 extern NSString * const CHCSVErrorDomain;

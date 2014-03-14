@@ -23,6 +23,8 @@
  THE SOFTWARE.
  **/
 
+// Downloaded from https://github.com/davedelong/CHCSVParser/
+
 #import "CHCSVParser.h"
 
 NSString *const CHCSVErrorDomain = @"com.davedelong.csv";
