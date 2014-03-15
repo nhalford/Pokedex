@@ -13,8 +13,8 @@
 
 - (id) initWithName:(NSString *)nm
                type:(NSString *)tp
-             height:(NSNumber *)ht
-             weight:(NSNumber *)wt
+             height:(NSInteger)ht
+             weight:(NSInteger)wt
              number:(NSNumber *)num
         description:(NSString *)desc
              sprite:(NSString *)spriteName

@@ -11,6 +11,9 @@
 @interface PokedexViewController : UITableViewController
 {
     NSArray *pokemonList;
+    NSArray *pTypeList;
+    NSArray *typeList;
+    NSArray *descList;
 }
 
 @end

@@ -14,6 +14,7 @@
 {
     IBOutlet UILabel *heightLabel;
     IBOutlet UILabel *weightLabel;
+    IBOutlet UILabel *typeLabel;
     IBOutlet UITextView *descView;
     IBOutlet UIImageView *imageView;
     IBOutlet UIButton *cryButton;
@@ -26,5 +27,7 @@
 - (IBAction)cry:(id)sender;
 
 - (id)initWithPokemon:(NHPokemon *)pkmn;
+- (NSString *)formatHeight;
+- (NSString *)formatWeight;
 
 @end

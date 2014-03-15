@@ -22,10 +22,22 @@
     if (self) {
         // set up Navigation
         UINavigationItem *n = [self navigationItem];
-        [n setTitle:NSLocalizedString(@"Pokedex", @"Name of application")];
+        [n setTitle:NSLocalizedString(@"Pokédex", @"Name of application")];
+        
         // Parse pokemon.csv
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"pokemon" ofType:@"csv"];
-        pokemonList = [NSArray arrayWithContentsOfCSVFile:path];
+        NSString *pokemonPath = [[NSBundle mainBundle] pathForResource:@"pokemon" ofType:@"csv"];
+        pokemonList = [NSArray arrayWithContentsOfCSVFile:pokemonPath];
+        // Parse other CSV files
+        NSString *pTypesPath = [[NSBundle mainBundle] pathForResource:@"pokemon_types" ofType:@"csv"];
+        NSString *typesPath = [[NSBundle mainBundle] pathForResource:@"type_names" ofType:@"csv"];
+        NSString *descPath = [[NSBundle mainBundle] pathForResource:@"pokemon_species_flavor_text" ofType:@"csv"];
+        // Array of Pokemon and their types (as numbers)
+        pTypeList = [NSArray arrayWithContentsOfCSVFile:pTypesPath];
+        // Array of numbers/names of types
+        typeList = [NSArray arrayWithContentsOfCSVFile:typesPath];
+        // Array of Pokemon and descriptions
+        descList = [NSArray arrayWithContentsOfCSVFile:descPath
+                                               options:CHCSVParserOptionsRecognizesBackslashesAsEscapes | CHCSVParserOptionsSanitizesFields];
     }
     return self;
 }
@@ -87,22 +99,38 @@
     pokemonName = [pokemonName stringByReplacingCharactersInRange:NSMakeRange(0,1)
                                                        withString:[[pokemonName substringToIndex:1] uppercaseString]];
     // Set the cell to display number and name, e.g., 1. Bulbasaur
-    [cell.textLabel setText:[NSString stringWithFormat:@"%d. %@",[indexPath row]+1,pokemonName]];
+    [cell.textLabel setText:[NSString stringWithFormat:@"%ld. %@",[indexPath row]+1,pokemonName]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // We'll change these to be correct
-    NHPokemon *pokemon = [[NHPokemon alloc] initWithName:@"test name"
-                                                    type:@"type"
-                                                  height:[NSNumber numberWithInt:1]
-                                                  weight:[NSNumber numberWithInt:1]
-                                                  number:[NSNumber numberWithInt:1]
-                                             description:@"placeholder description"
-                                                  sprite:@"1.png"
-                                                     cry:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"1" ofType:@"wav"]]];
+    NSNumber *pnum = [NSNumber numberWithInteger:[indexPath row] + 1]; // Pokemon number
+    
+    NSArray *pkmnArray = [pokemonList objectAtIndex:[indexPath row] + 1];
+    NSString *pname = [pkmnArray objectAtIndex:1];
+    pname = [pname stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[pname substringToIndex:1] uppercaseString]];
+    
+    NSUInteger typeNum = [[[pTypeList objectAtIndex:[indexPath row] + 1] objectAtIndex:1] integerValue];
+    NSString *type = [[typeList objectAtIndex:typeNum] objectAtIndex:2];
+    
+    NSString *pdesc = [[descList objectAtIndex:[indexPath row] + 1] objectAtIndex:3];
+    
+    NSInteger heightInt = [[pkmnArray objectAtIndex:3] integerValue];
+    NSInteger weightInt = [[pkmnArray objectAtIndex:4] integerValue];
+    
+    // NSURL for the path to the cry file
+    NSURL *cryURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",pnum] ofType:@"wav"]];
+    
+    NHPokemon *pokemon = [[NHPokemon alloc] initWithName:pname
+                                                    type:type
+                                                  height:heightInt
+                                                  weight:weightInt
+                                                  number:pnum
+                                             description:pdesc
+                                                  sprite:[NSString stringWithFormat:@"%@.png",pnum]
+                                                     cry:cryURL];
     PokemonViewController *pvc = [[PokemonViewController alloc] initWithPokemon:pokemon];
     [[self navigationController] pushViewController:pvc animated:YES];
 }

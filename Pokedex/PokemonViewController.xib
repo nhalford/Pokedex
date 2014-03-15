@@ -10,8 +10,9 @@
                 <outlet property="descView" destination="DVq-de-rdC" id="dBG-Iy-cAp"/>
                 <outlet property="heightLabel" destination="kxI-pR-AL6" id="EdY-CV-QcK"/>
                 <outlet property="imageView" destination="ZTY-7Y-1fd" id="EI1-Wm-mqZ"/>
+                <outlet property="typeLabel" destination="Fdv-8s-M7g" id="pFr-Lm-1bS"/>
                 <outlet property="view" destination="1" id="3"/>
-                <outlet property="weightLabel" destination="zEG-4q-uGS" id="aLm-4A-VL9"/>
+                <outlet property="weightLabel" destination="pdX-wr-zmj" id="DAQ-0G-aJg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -24,19 +25,25 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Height" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxI-pR-AL6">
-                    <rect key="frame" x="40" y="278" width="240" height="21"/>
+                    <rect key="frame" x="40" y="302" width="240" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEG-4q-uGS">
-                    <rect key="frame" x="40" y="319" width="240" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdX-wr-zmj">
+                    <rect key="frame" x="40" y="331" width="240" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdv-8s-M7g">
+                    <rect key="frame" x="40" y="273" width="240" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="DVq-de-rdC">
-                    <rect key="frame" x="40" y="357" width="240" height="128"/>
+                    <rect key="frame" x="40" y="360" width="240" height="107"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

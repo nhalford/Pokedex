@@ -437,7 +437,9 @@ NSString *const CHCSVErrorDomain = @"com.davedelong.csv";
         unichar next = [self _peekCharacter];
         if (next == '\0') { break; }
         
-        if (isBackslashEscaped == NO) {
+        if (next == DOUBLE_QUOTE) { [self _advance]; } //bdd - removes double quotes from the inner parts of the field
+        else if (isBackslashEscaped == NO) { //bdd - added "else"
+            //if (isBackslashEscaped == NO) { //bdd - removed this line & added the one above
             if (next == BACKSLASH && _recognizesBackslashesAsEscapes) {
                 isBackslashEscaped = YES;
                 [self _advance];
@@ -761,6 +763,7 @@ NSString *const CHCSVErrorDomain = @"com.davedelong.csv";
 
 + (instancetype)arrayWithContentsOfCSVFile:(NSString *)csvFilePath options:(CHCSVParserOptions)options delimiter:(unichar)delimiter {
     NSParameterAssert(csvFilePath);
+    
     _CHCSVAggregator *aggregator = [[_CHCSVAggregator alloc] init];
     CHCSVParser *parser = [[CHCSVParser alloc] initWithContentsOfCSVFile:csvFilePath delimiter:delimiter];
     [parser setDelegate:aggregator];
